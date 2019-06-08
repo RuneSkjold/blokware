@@ -1,0 +1,11 @@
+
+nav {padding-top:2.35em; text-align:center;}
+nav + div {margin-top:0.97em;} /*skal vaere padding??? */
+
+article.msg, article.threadmsg{border-left:0;border-top:3px solid;}
+
+html{max-width:75ex;margin:auto;}
+nav, body {color:black;background:#f0f0f0;font-family: Duru Sans, sans-serif;}
+:link, :visited {color:blue}
+input, select, button {background: transparent; border: 1px solid black}
+

@@ -1,0 +1,7 @@
+
+nav, body {color:black;background:white;font-family: Duru Sans, sans-serif;}
+:link, :visited {color:green;}
+html{transform: translate(100px) rotate(2deg);transform-origin: 0 -250px;}
+*:nth-child(21),*:nth-child(7),*:nth-child(9),*:nth-child(13),*:nth-child(16) {transform: translate(100px) rotate(-7deg);transform-origin: 0 -250px; font-size: 130%; background-color: pink;}
+
+body > :last-child {font-size:1000%}

@@ -1,0 +1,59 @@
+/* nav */
+
+nav {font-size: 120%; position: fixed; top: 0; left: 0; padding: 1.38em 0 0.15em 0.42em; background-color: inherit; width: 100%;}
+nav + div {font-size: 120%;}
+#usernav {position:fixed; z-index: 1; right: 0.75em;}
+@media all and (max-width: 640px) {
+    nav {padding-top:2.35em; text-align:center;}
+    nav + div {margin-top:0.97em;} /*skal vaere padding??? */
+}
+nav a.current {font-weight: bold;}
+nav a:not(.current):not(:hover) {text-decoration: none}
+
+/* admin */
+
+#adminnav > :first-child {position:absolute; z-index: -1; /*z-index to make fold-out menu not block normal usernav links when open*/}
+#adminnav:not(:hover) > :first-child {display:none;}
+#adminnav a {background-color: #f0f0f0;}
+@keyframes fadein {
+    from { opacity: 0.1; }
+      to { opacity: 1; }
+}
+body:not(.show_admin_actions) .admin_action {display: none;}
+body.show_admin_actions .admin_action_toggle {display: none;}
+.admin_action_toggle, .visible_admin_action:link, .visible_admin_action:visited {color: yellowgreen; font-size: smaller; cursor: pointer; text-decoration: none;}
+button.admin_action {animation: fadein 0.8s;}
+button.admin_action, button.visible_admin_action {outline: none; border: 2px outset purple; border-radius: 7px; padding: 1px 6px 1px 6px; margin: 1px; background: purple; color: #eaeaea; font-size: smaller; min-width: 3em;}
+button.semidestructive {background-color: orange; border-color: orange;color:black}
+button.destructive {background-color: orangered; border-color: orangered;color:black}
+button.admin_action:active, button.visible_admin_action:active {border-style: inset;}
+
+/* functionality */
+
+h1 input {font: inherit; background: inherit; color: inherit; border: none;}
+
+/* base styles */
+
+body {color: black; background: #f0f0f0;}
+:link {color: green}
+:visited {color: darkgreen}
+:not(nav) > a:hover {background-color: #afa}
+h1 {font-size: 135%}
+h2 {font-size: 105%}
+small a:not(:hover) {text-decoration: none;}
+
+/* features */
+
+#happeningnow {display: inline-block; background: white; color: black; padding: 1em 1em 1em 0; margin-bottom: 1em;}
+#happeningnow h1 {font: unset; margin: unset;}
+
+.highlight, .dynamic_highlight {outline:5px gold groove}
+.loaded .highlight {transition: outline 1.5s; outline:1px solid transparent}
+.dynamic_highlight_toggled {transition: outline 5s; outline:50px dashed transparent ! important}
+
+#footer {display: block; margin-top: 2em; padding-top: 0.3em; border-top: 1px solid lightgray; color: gray;}
+
+/* colored borders on private messages and thread posts */
+article.msg {border-left: 6px solid;}
+article.threadmsg {border-left: 12px solid;}
+

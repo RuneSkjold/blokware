@@ -1,0 +1,13 @@
+body{background:blue;color:white;text-transform:uppercase;min-height:70%; margin:8%;padding-top:1em}
+html{font-family:monospace;height:99%;background:lightblue}
+
+:link,:visited{color:inherit;}
+
+h1:before, h1:after {content: '****'}
+
+/*login screen*/
+td[align], button+p small {font-size:1.35em}
+button+p small{display:block;color:transparent}
+button+p small::first-line{color:white;}
+img[style="max-width:98%"] {display:none;}
+

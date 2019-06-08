@@ -1,0 +1,370 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: blokware 0.0.0.0.2\n"
+"POT-Creation-Date: 2016-11-29 19:44+0100\n"
+"PO-Revision-Date: 2016-11-29 19:57+0100\n"
+"Last-Translator: Jonas Helguson <jonas@husblok.net>\n"
+"Language-Team: Kontoret for husblokanliggender "
+"<kontakt@kontoretforhusblokanliggender.dk>\n"
+"Language: ma\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: pygettext.py 1.5\n"
+"X-Generator: Poedit 1.8.7.1\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+
+#: blokware.wsgi:223
+msgid "Name:"
+msgstr "Marklar:"
+
+#: blokware.wsgi:223
+msgid "Password:"
+msgstr "Marklar:"
+
+#: blokware.wsgi:224
+msgid "Log in"
+msgstr "Smurf in"
+
+#: blokware.wsgi:249
+msgid "New passwords did not match; try again."
+msgstr "New marklar did not smurf; smurf again."
+
+#: blokware.wsgi:252
+msgid "Password changed."
+msgstr "Marklar smurfed."
+
+#: blokware.wsgi:254
+msgid "Didn't work, try again"
+msgstr "Didn't smurf, smurf again."
+
+#: blokware.wsgi:255
+msgid "New password"
+msgstr "New marklar"
+
+#: blokware.wsgi:255
+msgid "Old password"
+msgstr "Old marklar"
+
+#: blokware.wsgi:255 blokware.wsgi:1284
+msgid "Change password"
+msgstr "Smurf marklar"
+
+#: blokware.wsgi:340 blokware.wsgi:1290
+msgid "Groups:"
+msgstr "Marklar:"
+
+#: blokware.wsgi:438
+msgid "Tongue"
+msgstr "Marklar"
+
+#: blokware.wsgi:439
+msgid "Skin"
+msgstr "Marklar"
+
+#: blokware.wsgi:450
+msgid "New message"
+msgstr "New marklar"
+
+#: blokware.wsgi:450
+msgid "To:"
+msgstr "To:"
+
+#: blokware.wsgi:519 blokware.wsgi:538 blokware.wsgi:594 blokware.wsgi:669
+#: blokware.wsgi:680 blokware.wsgi:752 blokware.wsgi:799
+msgid "<p>You are not a member of this group.</p>"
+msgstr "<p>You are not a marklar of this marklar.</p>"
+
+#: blokware.wsgi:548
+msgid "This thread has been created for discussing the event"
+msgstr "This marklar has been smurfed for smurfing the marklar"
+
+#: blokware.wsgi:732
+msgid "Created event:"
+msgstr "Smurfed marklar:"
+
+#: blokware.wsgi:885
+msgid "log out"
+msgstr "smurf out"
+
+#: blokware.wsgi:889
+msgid "FOOTER_HTML_HERE"
+msgstr ""
+"Marklar: This marklar smurfs marklars. By smurfing {0} you smurf to our "
+"smurfing of marklars."
+
+#: blokware.wsgi:1159 blokware.wsgi:1255
+msgid "Events"
+msgstr "Marklar"
+
+#: blokware.wsgi:1159 blokware.wsgi:1255
+msgid "Threads"
+msgstr "Marklar"
+
+#: blokware.wsgi:1160
+msgid "Messages"
+msgstr "Marklar"
+
+#: blokware.wsgi:1235
+msgid "Groups"
+msgstr "Marklar"
+
+#: blokware.wsgi:1247
+msgid "The following new members are awaiting approval by an existing member:"
+msgstr ""
+
+#: blokware.wsgi:1252
+msgid "Grant access"
+msgstr ""
+
+#: blokware.wsgi:1255
+msgid "Pages"
+msgstr ""
+
+#: blokware.wsgi:1258
+msgid "Subgroups:"
+msgstr "Marklar:"
+
+#: blokware.wsgi:1264
+msgid "Members:"
+msgstr "Marklar:"
+
+#: blokware.wsgi:1277 blokware.wsgi:1604
+msgid "Set"
+msgstr "Smurf"
+
+#: blokware.wsgi:1282
+msgid "Change description"
+msgstr "Smurf marklar"
+
+#: blokware.wsgi:1287
+msgid "Communicate"
+msgstr "Smurf"
+
+#: blokware.wsgi:1296
+msgid "Posts"
+msgstr "Marklar"
+
+#: blokware.wsgi:1298
+msgid "Posts:"
+msgstr "Marklar:"
+
+#: blokware.wsgi:1300
+msgid "(None.)"
+msgstr "(None.)"
+
+#: blokware.wsgi:1316
+msgid "Me"
+msgstr "Marklar"
+
+#: blokware.wsgi:1327
+msgid "search by name"
+msgstr ""
+
+#: blokware.wsgi:1327 blokware.wsgi:1386 blokware.wsgi:1414 blokware.wsgi:1469
+msgid "New"
+msgstr "New"
+
+#: blokware.wsgi:1376
+msgid "All groups"
+msgstr "All marklar"
+
+#: blokware.wsgi:1379
+msgid "Show"
+msgstr "Smurf"
+
+#: blokware.wsgi:1405 blokware.wsgi:1408 blokware.wsgi:1490 blokware.wsgi:1671
+msgid "by"
+msgstr "by"
+
+#: blokware.wsgi:1406 blokware.wsgi:1455 blokware.wsgi:1488
+msgid "in"
+msgstr "in"
+
+#: blokware.wsgi:1407
+msgid "newest message"
+msgstr "newest marklar"
+
+#: blokware.wsgi:1429
+msgid "HAPPENING RIGHT NOW:"
+msgstr "SMURFING RIGHT NOW:"
+
+#: blokware.wsgi:1445
+msgid "Show all events (including past)"
+msgstr "Smurf all marklar (including past)"
+
+#: blokware.wsgi:1453
+msgid "(Vote)"
+msgstr "(Marklar)"
+
+#: blokware.wsgi:1457 blokware.wsgi:1458
+msgid "until"
+msgstr "until"
+
+#: blokware.wsgi:1498 blokware.wsgi:1509 blokware.wsgi:1592 blokware.wsgi:1645
+msgid "Group:"
+msgstr "Marklar:"
+
+#: blokware.wsgi:1517
+msgid "New thread"
+msgstr "New marklar:"
+
+#: blokware.wsgi:1520
+msgid "The thread will be attached to"
+msgstr "The marklar will be smurfed to"
+
+#: blokware.wsgi:1520
+msgid "this event"
+msgstr "this marklar"
+
+#: blokware.wsgi:1522 blokware.wsgi:1560
+msgid "Title:"
+msgstr "Marklar:"
+
+#: blokware.wsgi:1528
+msgid "Submit"
+msgstr "Smurf"
+
+#: blokware.wsgi:1530
+msgid "Create event"
+msgstr "Smurf marklar"
+
+#: blokware.wsgi:1550
+msgid "is in favor"
+msgstr "is in marklar"
+
+#: blokware.wsgi:1550
+msgid "is not opposed"
+msgstr "is not opposed"
+
+#: blokware.wsgi:1550
+msgid "is opposed"
+msgstr "is opposed"
+
+#: blokware.wsgi:1558
+msgid "New event"
+msgstr "New marklar"
+
+#: blokware.wsgi:1561
+msgid "Description:"
+msgstr "Marklar:"
+
+#: blokware.wsgi:1562 blokware.wsgi:1590
+msgid "Begins:"
+msgstr "Smurfs:"
+
+#: blokware.wsgi:1563 blokware.wsgi:1590
+msgid "Ends:"
+msgstr "Smurfs:"
+
+#: blokware.wsgi:1566
+msgid "Update"
+msgstr "Smurf"
+
+#: blokware.wsgi:1568
+msgid "Type:"
+msgstr "Marklar:"
+
+#: blokware.wsgi:1568 blokware.wsgi:1586
+msgid "Event"
+msgstr "Marklar"
+
+#: blokware.wsgi:1569 blokware.wsgi:1586
+msgid "Vote"
+msgstr "Marklar"
+
+#: blokware.wsgi:1571
+msgid "The event will be connected to"
+msgstr "The marklar will be smurfed to"
+
+#: blokware.wsgi:1571
+msgid "this thread"
+msgstr "this marklar"
+
+#: blokware.wsgi:1579 blokware.wsgi:1663
+msgid "Create"
+msgstr "Smurf"
+
+#: blokware.wsgi:1589
+msgid "edit"
+msgstr "smurf"
+
+#: blokware.wsgi:1591
+msgid "Created by"
+msgstr "Smurfed by"
+
+#: blokware.wsgi:1594
+msgid "Thread:"
+msgstr "Marklar:"
+
+#: blokware.wsgi:1596
+msgid "Create a thread to discuss this event"
+msgstr "Smurf a marklar to smurf this marklar"
+
+#: blokware.wsgi:1604
+msgid "Comment:"
+msgstr "Marklar:"
+
+#: blokware.wsgi:1604
+msgid "In favor of the proposal"
+msgstr "In marklar of the marklar"
+
+#: blokware.wsgi:1604
+msgid "Not opposed to the proposal"
+msgstr "Not opposed to the marklar"
+
+#: blokware.wsgi:1604
+msgid "Opposed to the proposal"
+msgstr "Opposed to the marklar"
+
+#: blokware.wsgi:1604
+msgid "Your opinion:"
+msgstr "Your marklar:"
+
+#: blokware.wsgi:1624
+msgid "consensus among participants"
+msgstr "marklar among marklars"
+
+#: blokware.wsgi:1625
+msgid "consensus among the whole group"
+msgstr "marklar among the whole marklar"
+
+#: blokware.wsgi:1632
+msgid "has not participated"
+msgstr "has not smurfed"
+
+#: blokware.wsgi:1635
+msgid "Reboot proposal"
+msgstr "Smurf marklar"
+
+#: blokware.wsgi:1641
+msgid "Title"
+msgstr ""
+
+#: blokware.wsgi:1663
+msgid "Save"
+msgstr ""
+
+#~ msgid "Log ind"
+#~ msgstr "Smurf in"
+
+#~ msgid "Navn:"
+#~ msgstr "Marklar:"
+
+#~ msgid "This thread has been created for discusing the event"
+#~ msgstr "This marklar has been smurfed for smurfing the marklar"
+
+#~ msgid "Created event: "
+#~ msgstr "Smurfed marklar:"
+
+#~ msgid "People"
+#~ msgstr "Marklar"
+
+#~ msgid "Begins: "
+#~ msgstr "Smurfs:"
+
+#~ msgid "Ends: "
+#~ msgstr "Smurfs:"
+
+#~ msgid "Titel:"
+#~ msgstr "Marklar:"

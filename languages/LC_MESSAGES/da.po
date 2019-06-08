@@ -1,0 +1,363 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: blokware 0.0.0.0.2\n"
+"POT-Creation-Date: 2016-11-29 19:40+0100\n"
+"PO-Revision-Date: 2016-11-29 19:43+0100\n"
+"Last-Translator: Jonas Helguson <jonas@husblok.net>\n"
+"Language-Team: Kontoret for husblokanliggender "
+"<kontakt@kontoretforhusblokanliggender.dk>\n"
+"Language: da\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: pygettext.py 1.5\n"
+"X-Generator: Poedit 1.8.7.1\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+
+#: blokware.wsgi:223
+msgid "Name:"
+msgstr "Navn:"
+
+#: blokware.wsgi:223
+msgid "Password:"
+msgstr "Password:"
+
+#: blokware.wsgi:224
+msgid "Log in"
+msgstr "Log ind"
+
+#: blokware.wsgi:249
+msgid "New passwords did not match; try again."
+msgstr "Nye passwords matchede ikke, prøv igen."
+
+#: blokware.wsgi:252
+msgid "Password changed."
+msgstr "Password ændret."
+
+#: blokware.wsgi:254
+msgid "Didn't work, try again"
+msgstr "Virkede ikke, prøv igen."
+
+#: blokware.wsgi:255
+msgid "New password"
+msgstr "Nyt password"
+
+#: blokware.wsgi:255
+msgid "Old password"
+msgstr "Gammelt password"
+
+#: blokware.wsgi:255 blokware.wsgi:1284
+msgid "Change password"
+msgstr "Ændr password"
+
+#: blokware.wsgi:340 blokware.wsgi:1290
+msgid "Groups:"
+msgstr "Grupper:"
+
+#: blokware.wsgi:438
+msgid "Tongue"
+msgstr "Tungemål"
+
+#: blokware.wsgi:439
+msgid "Skin"
+msgstr "Hudfarve"
+
+#: blokware.wsgi:450
+msgid "New message"
+msgstr "ny besked"
+
+#: blokware.wsgi:450
+msgid "To:"
+msgstr "Til"
+
+#: blokware.wsgi:519 blokware.wsgi:538 blokware.wsgi:594 blokware.wsgi:669
+#: blokware.wsgi:680 blokware.wsgi:752 blokware.wsgi:799
+msgid "<p>You are not a member of this group.</p>"
+msgstr "<p>Du er ikke medlem af denne gruppe.</p>"
+
+#: blokware.wsgi:548
+msgid "This thread has been created for discussing the event"
+msgstr "Denne tråd er oprettet til at diskutere begivenheden"
+
+#: blokware.wsgi:732
+msgid "Created event:"
+msgstr "Oprettet begivenhed:"
+
+#: blokware.wsgi:885
+msgid "log out"
+msgstr "log ud"
+
+#: blokware.wsgi:889
+msgid "FOOTER_HTML_HERE"
+msgstr ""
+"OBS: Dette website benytter <i>cookies</i> med <i>chokoladestykker</i> "
+"fordi de er <i>lækre</i>. Ved at benytte {0} samtygger du til vores brug af "
+"cookies (ikke at forveksle med at samtykke). <a href=\"http://www.webmd.com/"
+"diet/a-z/cookie-diet\">Mere om ansvarlig brug af cookies</a>"
+
+#: blokware.wsgi:1159 blokware.wsgi:1255
+msgid "Events"
+msgstr "Begivenheder"
+
+#: blokware.wsgi:1159 blokware.wsgi:1255
+msgid "Threads"
+msgstr "Tråde"
+
+#: blokware.wsgi:1160
+msgid "Messages"
+msgstr "Beskeder"
+
+#: blokware.wsgi:1235
+msgid "Groups"
+msgstr "Grupper"
+
+#: blokware.wsgi:1247
+msgid "The following new members are awaiting approval by an existing member:"
+msgstr ""
+
+#: blokware.wsgi:1252
+msgid "Grant access"
+msgstr ""
+
+#: blokware.wsgi:1255
+msgid "Pages"
+msgstr ""
+
+#: blokware.wsgi:1258
+msgid "Subgroups:"
+msgstr "Undergrupper:"
+
+#: blokware.wsgi:1264
+msgid "Members:"
+msgstr "Medlemmer:"
+
+#: blokware.wsgi:1277 blokware.wsgi:1604
+msgid "Set"
+msgstr "Sæt"
+
+#: blokware.wsgi:1282
+msgid "Change description"
+msgstr "Skift beskrivelse"
+
+#: blokware.wsgi:1287
+msgid "Communicate"
+msgstr "Kommunikér"
+
+#: blokware.wsgi:1296
+msgid "Posts"
+msgstr "Indlæg"
+
+#: blokware.wsgi:1298
+msgid "Posts:"
+msgstr "Indlæg:"
+
+#: blokware.wsgi:1300
+msgid "(None.)"
+msgstr "(Ingen.)"
+
+#: blokware.wsgi:1316
+msgid "Me"
+msgstr "Mig"
+
+#: blokware.wsgi:1327
+msgid "search by name"
+msgstr ""
+
+#: blokware.wsgi:1327 blokware.wsgi:1386 blokware.wsgi:1414 blokware.wsgi:1469
+msgid "New"
+msgstr "Ny"
+
+#: blokware.wsgi:1376
+msgid "All groups"
+msgstr "Alle grupper"
+
+#: blokware.wsgi:1379
+msgid "Show"
+msgstr "Vis"
+
+#: blokware.wsgi:1405 blokware.wsgi:1408 blokware.wsgi:1490 blokware.wsgi:1671
+msgid "by"
+msgstr "af"
+
+#: blokware.wsgi:1406 blokware.wsgi:1455 blokware.wsgi:1488
+msgid "in"
+msgstr "i"
+
+#: blokware.wsgi:1407
+msgid "newest message"
+msgstr "sidste besked"
+
+#: blokware.wsgi:1429
+msgid "HAPPENING RIGHT NOW:"
+msgstr "SKER LIGE FUCKING NU:"
+
+#: blokware.wsgi:1445
+msgid "Show all events (including past)"
+msgstr "Vis alle begivenheder (inklusiv overståede)"
+
+#: blokware.wsgi:1453
+msgid "(Vote)"
+msgstr "(Afstemning)"
+
+#: blokware.wsgi:1457 blokware.wsgi:1458
+msgid "until"
+msgstr "indtil"
+
+#: blokware.wsgi:1498 blokware.wsgi:1509 blokware.wsgi:1592 blokware.wsgi:1645
+msgid "Group:"
+msgstr "Gruppe:"
+
+#: blokware.wsgi:1517
+msgid "New thread"
+msgstr "Ny tråd:"
+
+#: blokware.wsgi:1520
+msgid "The thread will be attached to"
+msgstr "Tråden vil blive tilknyttet"
+
+#: blokware.wsgi:1520
+msgid "this event"
+msgstr "denne begivenhed"
+
+#: blokware.wsgi:1522 blokware.wsgi:1560
+msgid "Title:"
+msgstr "Titel:"
+
+#: blokware.wsgi:1528
+msgid "Submit"
+msgstr "Skriv"
+
+#: blokware.wsgi:1530
+msgid "Create event"
+msgstr "Opret begivenhed"
+
+#: blokware.wsgi:1550
+msgid "is in favor"
+msgstr "er for"
+
+#: blokware.wsgi:1550
+msgid "is not opposed"
+msgstr "er ikke imod"
+
+#: blokware.wsgi:1550
+msgid "is opposed"
+msgstr "er imod "
+
+#: blokware.wsgi:1558
+msgid "New event"
+msgstr "Ny begivenhed:"
+
+#: blokware.wsgi:1561
+msgid "Description:"
+msgstr "Beskrivelse:"
+
+#: blokware.wsgi:1562 blokware.wsgi:1590
+msgid "Begins:"
+msgstr "Starter:"
+
+#: blokware.wsgi:1563 blokware.wsgi:1590
+msgid "Ends:"
+msgstr "Slutter:"
+
+#: blokware.wsgi:1566
+msgid "Update"
+msgstr "Opdater"
+
+#: blokware.wsgi:1568
+msgid "Type:"
+msgstr "Type:"
+
+#: blokware.wsgi:1568 blokware.wsgi:1586
+msgid "Event"
+msgstr "Begivenhed"
+
+#: blokware.wsgi:1569 blokware.wsgi:1586
+msgid "Vote"
+msgstr "Afstemning"
+
+#: blokware.wsgi:1571
+msgid "The event will be connected to"
+msgstr "Begivenheden vil blive tilknyttet"
+
+#: blokware.wsgi:1571
+msgid "this thread"
+msgstr "denne tråd"
+
+#: blokware.wsgi:1579 blokware.wsgi:1663
+msgid "Create"
+msgstr "Opret"
+
+#: blokware.wsgi:1589
+msgid "edit"
+msgstr "rediger"
+
+#: blokware.wsgi:1591
+msgid "Created by"
+msgstr "Oprettet af"
+
+#: blokware.wsgi:1594
+msgid "Thread:"
+msgstr "Tråd:"
+
+#: blokware.wsgi:1596
+msgid "Create a thread to discuss this event"
+msgstr "Opret en tråd til at diskutere denne begivenhed"
+
+#: blokware.wsgi:1604
+msgid "Comment:"
+msgstr "Kommentar:"
+
+#: blokware.wsgi:1604
+msgid "In favor of the proposal"
+msgstr "For forslaget"
+
+#: blokware.wsgi:1604
+msgid "Not opposed to the proposal"
+msgstr "Ikke imod forslaget"
+
+#: blokware.wsgi:1604
+msgid "Opposed to the proposal"
+msgstr "Imod forslaget"
+
+#: blokware.wsgi:1604
+msgid "Your opinion:"
+msgstr "Din mening:"
+
+#: blokware.wsgi:1624
+msgid "consensus among participants"
+msgstr "konsensus blandt deltagere"
+
+#: blokware.wsgi:1625
+msgid "consensus among the whole group"
+msgstr "konsensus i hele gruppen"
+
+#: blokware.wsgi:1632
+msgid "has not participated"
+msgstr "har ikke deltaget"
+
+#: blokware.wsgi:1635
+msgid "Reboot proposal"
+msgstr "Genstart forslaget"
+
+#: blokware.wsgi:1641
+msgid "Title"
+msgstr ""
+
+#: blokware.wsgi:1663
+msgid "Save"
+msgstr ""
+
+#~ msgid "People"
+#~ msgstr "Mennesker"
+
+#~ msgid "Begins: "
+#~ msgstr "Starter:"
+
+#~ msgid "Ends: "
+#~ msgstr "Slutter:"
+
+#~ msgid "Navn:"
+#~ msgstr "Navn:"
+
+#~ msgid "Titel:"
+#~ msgstr "Titel:"

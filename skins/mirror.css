@@ -1,0 +1,10 @@
+
+nav, body {color:black;background:white;font-family: Duru Sans, sans-serif;}
+:link, :visited {color:green;}
+body{transform: scale(-1, 1);}
+#usernav * {display:inline-block;}
+#usernav :nth-child(2){transform: scale(-1, 1);}
+#usernav :nth-child(2):hover {padding:50px;}
+#usernav :nth-child(2):hover:after{content:' (haha)';}
+#usernav :nth-child(2):after{content:' (css is awesome)';color:red;font-style:italic;}
+

@@ -1,0 +1,18 @@
+
+body
+{
+    color: white;
+    background: black;
+    font-family: Min helt egen font, Duru Sans, sans-serif;
+}
+
+:link, :visited
+{
+    color:green
+}
+
+#happeningnow
+{
+    background: #232;
+}
+

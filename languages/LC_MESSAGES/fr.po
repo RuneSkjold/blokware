@@ -1,0 +1,356 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: blokware 0.0.0.0.2\n"
+"POT-Creation-Date: 2016-11-29 20:25+0100\n"
+"PO-Revision-Date: 2016-11-29 20:29+0100\n"
+"Last-Translator: Jonas Helguson <jonas@husblok.net>\n"
+"Language-Team: Kontoret for husblokanliggender "
+"<kontakt@kontoretforhusblokanliggender.dk>\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: pygettext.py 1.5\n"
+"X-Generator: Poedit 1.8.7.1\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+
+#: blokware.wsgi:223
+msgid "Name:"
+msgstr ""
+
+#: blokware.wsgi:223
+msgid "Password:"
+msgstr "Mot de passe"
+
+#: blokware.wsgi:224
+msgid "Log in"
+msgstr "Connectez-vous"
+
+#: blokware.wsgi:249
+msgid "New passwords did not match; try again."
+msgstr "Les nouveaux mots de passe ne correspondent pas ; réessayer."
+
+#: blokware.wsgi:252
+msgid "Password changed."
+msgstr "Mot de passe changé"
+
+#: blokware.wsgi:254
+msgid "Didn't work, try again"
+msgstr "N'a pas marché, essayez à nouveau"
+
+#: blokware.wsgi:255
+msgid "New password"
+msgstr "Nouveau mot de passe"
+
+#: blokware.wsgi:255
+msgid "Old password"
+msgstr "Ancien mot de passe"
+
+#: blokware.wsgi:255 blokware.wsgi:1282
+msgid "Change password"
+msgstr "Changer mot de passe"
+
+#: blokware.wsgi:340 blokware.wsgi:1288
+msgid "Groups:"
+msgstr "Groupes"
+
+#: blokware.wsgi:436
+msgid "Tongue"
+msgstr "Langue"
+
+#: blokware.wsgi:437
+msgid "Skin"
+msgstr ""
+
+#: blokware.wsgi:449
+msgid "New message"
+msgstr ""
+
+#: blokware.wsgi:449
+msgid "To:"
+msgstr ""
+
+#: blokware.wsgi:518 blokware.wsgi:537 blokware.wsgi:593 blokware.wsgi:668
+#: blokware.wsgi:679 blokware.wsgi:751 blokware.wsgi:798
+msgid "<p>You are not a member of this group.</p>"
+msgstr "<p> Vous n'êtes pas un membre de ce groupe . </p>"
+
+#: blokware.wsgi:547
+msgid "This thread has been created for discussing the event"
+msgstr "Ce fil a été créé pour discuter l'événement"
+
+#: blokware.wsgi:731
+msgid "Created event:"
+msgstr "Événement créé:"
+
+#: blokware.wsgi:884
+msgid "log out"
+msgstr "Déconnecter"
+
+#: blokware.wsgi:887
+msgid "FOOTER_HTML_HERE"
+msgstr "Ost & vin!"
+
+#: blokware.wsgi:1157 blokware.wsgi:1253
+msgid "Events"
+msgstr "Événements"
+
+#: blokware.wsgi:1157 blokware.wsgi:1253
+msgid "Threads"
+msgstr "Fils"
+
+#: blokware.wsgi:1158
+msgid "Messages"
+msgstr "Messages"
+
+#: blokware.wsgi:1233
+msgid "Groups"
+msgstr "Groupes"
+
+#: blokware.wsgi:1245
+msgid "The following new members are awaiting approval by an existing member:"
+msgstr ""
+
+#: blokware.wsgi:1250
+msgid "Grant access"
+msgstr ""
+
+#: blokware.wsgi:1253
+msgid "Pages"
+msgstr ""
+
+#: blokware.wsgi:1256
+msgid "Subgroups:"
+msgstr ""
+
+#: blokware.wsgi:1262
+msgid "Members:"
+msgstr "Membres:"
+
+#: blokware.wsgi:1275 blokware.wsgi:1602
+msgid "Set"
+msgstr "Appliquer"
+
+#: blokware.wsgi:1280
+msgid "Change description"
+msgstr "Changer description"
+
+#: blokware.wsgi:1285
+msgid "Communicate"
+msgstr "Communiquer"
+
+#: blokware.wsgi:1294
+msgid "Posts"
+msgstr "Messages"
+
+#: blokware.wsgi:1296
+msgid "Posts:"
+msgstr "Messages:"
+
+#: blokware.wsgi:1298
+msgid "(None.)"
+msgstr "(Aucun.)"
+
+#: blokware.wsgi:1314
+msgid "Me"
+msgstr ""
+
+#: blokware.wsgi:1325
+msgid "search by name"
+msgstr ""
+
+#: blokware.wsgi:1325 blokware.wsgi:1384 blokware.wsgi:1412 blokware.wsgi:1467
+msgid "New"
+msgstr "Nouveau"
+
+#: blokware.wsgi:1374
+msgid "All groups"
+msgstr "Tous les groupes"
+
+#: blokware.wsgi:1377
+msgid "Show"
+msgstr "Montrer"
+
+#: blokware.wsgi:1403 blokware.wsgi:1406 blokware.wsgi:1488 blokware.wsgi:1669
+msgid "by"
+msgstr "par"
+
+#: blokware.wsgi:1404 blokware.wsgi:1453 blokware.wsgi:1486
+msgid "in"
+msgstr "dans"
+
+#: blokware.wsgi:1405
+msgid "newest message"
+msgstr "message le plus récent"
+
+#: blokware.wsgi:1427
+msgid "HAPPENING RIGHT NOW:"
+msgstr "SE PASSE MAINTENANT:"
+
+#: blokware.wsgi:1443
+msgid "Show all events (including past)"
+msgstr "Montrer tous les événements (y compris précedénts)"
+
+#: blokware.wsgi:1451
+msgid "(Vote)"
+msgstr "(Sondage)"
+
+#: blokware.wsgi:1455 blokware.wsgi:1456
+msgid "until"
+msgstr ""
+
+#: blokware.wsgi:1496 blokware.wsgi:1507 blokware.wsgi:1590 blokware.wsgi:1643
+msgid "Group:"
+msgstr "Groupe"
+
+#: blokware.wsgi:1515
+msgid "New thread"
+msgstr "Nouveau fil"
+
+#: blokware.wsgi:1518
+msgid "The thread will be attached to"
+msgstr "ce fil sera attaché à"
+
+#: blokware.wsgi:1518
+msgid "this event"
+msgstr "cet evènement"
+
+#: blokware.wsgi:1520 blokware.wsgi:1558
+msgid "Title:"
+msgstr ""
+
+#: blokware.wsgi:1526
+msgid "Submit"
+msgstr ""
+
+#: blokware.wsgi:1528
+msgid "Create event"
+msgstr "créer un évènement"
+
+#: blokware.wsgi:1548
+msgid "is in favor"
+msgstr "est en faveur"
+
+#: blokware.wsgi:1548
+msgid "is not opposed"
+msgstr "ne s'y oppose"
+
+#: blokware.wsgi:1548
+msgid "is opposed"
+msgstr "est opposé"
+
+#: blokware.wsgi:1556
+msgid "New event"
+msgstr "Nouveau événement"
+
+#: blokware.wsgi:1559
+msgid "Description:"
+msgstr "Description:"
+
+#: blokware.wsgi:1560 blokware.wsgi:1588
+msgid "Begins:"
+msgstr "Commence:"
+
+#: blokware.wsgi:1561 blokware.wsgi:1588
+msgid "Ends:"
+msgstr "Prend fin:"
+
+#: blokware.wsgi:1564
+msgid "Update"
+msgstr "Mettre à jour"
+
+#: blokware.wsgi:1566
+msgid "Type:"
+msgstr "Type:"
+
+#: blokware.wsgi:1566 blokware.wsgi:1584
+msgid "Event"
+msgstr "Événement"
+
+#: blokware.wsgi:1567 blokware.wsgi:1584
+msgid "Vote"
+msgstr "Vote"
+
+#: blokware.wsgi:1569
+msgid "The event will be connected to"
+msgstr "l'événement sera relié à"
+
+#: blokware.wsgi:1569
+msgid "this thread"
+msgstr "Ce fil"
+
+#: blokware.wsgi:1577 blokware.wsgi:1661
+msgid "Create"
+msgstr "Créer"
+
+#: blokware.wsgi:1587
+msgid "edit"
+msgstr "Modifier"
+
+#: blokware.wsgi:1589
+msgid "Created by"
+msgstr "Créé par"
+
+#: blokware.wsgi:1592
+msgid "Thread:"
+msgstr "Fil:"
+
+#: blokware.wsgi:1594
+msgid "Create a thread to discuss this event"
+msgstr "Créer un fil pour discuter cet événement"
+
+#: blokware.wsgi:1602
+msgid "Comment:"
+msgstr "Commentaire:"
+
+#: blokware.wsgi:1602
+msgid "In favor of the proposal"
+msgstr "En faveur de la proposition"
+
+#: blokware.wsgi:1602
+msgid "Not opposed to the proposal"
+msgstr "Pas contre la proposition"
+
+#: blokware.wsgi:1602
+msgid "Opposed to the proposal"
+msgstr "Contre la proposition"
+
+#: blokware.wsgi:1602
+msgid "Your opinion:"
+msgstr "Votre avis:"
+
+#: blokware.wsgi:1622
+msgid "consensus among participants"
+msgstr "consensus entre les participants"
+
+#: blokware.wsgi:1623
+msgid "consensus among the whole group"
+msgstr "le consensus de l'ensemble du groupe"
+
+#: blokware.wsgi:1630
+msgid "has not participated"
+msgstr "n'a pas participé"
+
+#: blokware.wsgi:1633
+msgid "Reboot proposal"
+msgstr "Rédemarrer proposition"
+
+#: blokware.wsgi:1639
+msgid "Title"
+msgstr ""
+
+#: blokware.wsgi:1661
+msgid "Save"
+msgstr ""
+
+#~ msgid "Navn:"
+#~ msgstr "Nom:"
+
+#~ msgid "Begins: "
+#~ msgstr "Commence:"
+
+#~ msgid "Ends: "
+#~ msgstr "Fin:"
+
+#~ msgid "Titel:"
+#~ msgstr "Titre:"

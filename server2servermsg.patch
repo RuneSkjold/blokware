@@ -1,0 +1,239 @@
+--- blokware.wsgi.bak	2016-11-30 00:48:36.000000000 +0100
++++ blokware.wsgi	2016-12-02 18:04:33.772225459 +0100
+@@ -106,6 +106,8 @@
+ MAXLEN = {'title': 256}
+ DBPREFIX = 'blokw_'
+ 
++_TRUSTED_SERVERS = {'meta.husblok.net', 'dagmarsminde.husblok.net', 'ontologiskanarki.husblok.net'}
++
+ def application(env, start_response):
+     import cgi
+ 
+@@ -217,6 +219,53 @@
+         output = ['foo']
+         release_carrier_pidgeons(env, db, config['emailout'])
+ 
++    elif path == ['_v0msgsync_init'] and qs['s'] in _TRUSTED_SERVERS: #...and method = POST, for good measure
++        include_html_header = False
++        result = http_request(qs['s'], '/_v0msgsync_fetch?k=' + qs['k'])
++        if result[0] == 200:
++            #er det her vi skal checke om brugeren findes i vores alien_friends? er det her vi skal smide den ind? eller afvise hvis ikke?
++            to_name, from_name, key_len, msg_len, key_and_msg = result[1].split(b'\n', 4)
++            assert len(key_and_msg) == int(key_len.decode()) + int(msg_len.decode())
++            to_user = db.people.find_one({'name': to_name.decode()})
++            db.messages.insert_one({'to': to_user['_id'], 'from': from_name.decode() + '@' + qs['s'].replace('.', '_'), 'keys': {str(to_user['_id']): key_and_msg[:int(key_len.decode())]}, 'msg': key_and_msg[int(key_len.decode()):]})
++
++    elif path == ['_v0msgsync_fetch']: #...and method = POST, for good measure
++        include_html_header = False
++        msg = db.messages_outgoing.find_one({'idkey': qs['k']})
++        if msg:
++            start_response('200 OK', [('Content-Type', 'application/octet-stream')])
++            msg = db.messages.find_one(msg['_id'])
++            rcpt_key = msg['keys'][msg['to']]
++            names = msg['to'].split('@')[0].encode() + b'\n' + dbcacheget(db, 'people', msg['from'], ['name'])['name'].encode()
++            return [names, b'\n', str(len(rcpt_key)).encode(), b'\n', str(len(msg['msg'])).encode(), b'\n', rcpt_key, msg['msg']]
++
++    elif path[0] == '_v0insecurekeyexchange' and path[1] in _TRUSTED_SERVERS:
++        id=db.v0keyexchangetodo.insert_one({'remoteserver':path[1],'remoteuser':path[2],'localuser':user['_id']}).inserted_id
++        http_request(path[1], '/_v0insecurekeyexchangeB/' + env['HTTP_HOST'] + '/' + path[2] + '/' + str(id) + '/' + urlesc(user['name'])) #server, ownuser, token, myuser
++        include_html_header = False
++        output = ['']
++
++    elif path[0] == '_v0insecurekeyexchangeB' and path[1] in _TRUSTED_SERVERS:
++        from base64 import b64encode
++        result = http_request(path[1], '/_v0insecurekeyexchangeC/' + path[3] + '/' + b64encode(db.people.find_one({'name':path[2]})['publickey'].encode()).decode())
++        if result[0] == 200:
++            dereskey = result[1]
++            name = path[4] + '@' + path[1]
++            escapedname = name.replace('.', '_')
++            db.people.update_one({'name':path[2]}, {'$set': {'remote_contacts.'+escapedname:{'_id':escapedname,'name':name,'publickey':dereskey}}})
++
++    elif path[0] == '_v0insecurekeyexchangeC':
++        todo=db.v0keyexchangetodo.find_one(ObjectId(path[1]))
++        if todo:
++            #path[2] er keyen og skal gemmes
++            #vi skal returnere vores key    
++            name = todo['remoteuser'] + '@' + todo['remoteserver']
++            escapedname = name.replace('.', '_')
++            from base64 import b64decode
++            db.people.update_one({'_id': todo['localuser']}, {'$set': {'remote_contacts.'+escapedname:{'_id':escapedname,'name':name,'publickey':b64decode(path[2])}}})
++            start_response('200 OK', [('Content-Type', 'application/octet-stream')])
++            return [db.people.find_one(todo['localuser'])['publickey'].encode()]
++
+     elif not user:
+         response_status = '403 Unauthorized'
+         output += ['<form method=post style="text-align:center"><h1>', env['HTTP_HOST'] ,'</h1><table align=center><tr><td align=left>',
+@@ -445,35 +494,46 @@
+         output = comms(db, user, decrypter, fucking_webkit='AppleWebKit' in env['HTTP_USER_AGENT'] and 'Chrom' not in env['HTTP_USER_AGENT'])
+ 
+     elif path == ['messages', 'new']:
+-        output = ['<h1>', esc(_('New message')), '</h1>', esc(_('To:')),' <input onkeydown=\'this.dataset.inhibit_jump_once=(event.keyCode>123||(event.keyCode>44&amp;&amp;event.keyCode<112)||event.keyCode==32||(event.keyCode==8&amp;&amp;this.value.length>0))?"true":"false";if(event.keyCode==13||event.keyCode==39)this.oninput();\' oninput=\'if(this.dataset.inhibit_jump_once=="true"){this.dataset.inhibit_jump_once="false";return;}this.value=this.value.split(" (")[0];this.onblur();if (document.getElementById("sendbutton").disabled==false){setTimeout("document.querySelector(&apos;textarea&apos;).focus();"), 1}\' onblur=\'usermatch=document.getElementById("useroption_" + this.value.toLowerCase().trim().replace(" ", "_"));document.getElementById("sendbutton").disabled=(usermatch==null);if (usermatch)document.getElementById("newmsgform").action="/messages/user/"+usermatch.dataset.id;\' type=search list=users autofocus><datalist id=users>']
++        output = ['<h1>', esc(_('New message')), '</h1>', esc(_('To:')),' <input size=16 onkeydown=\'document.querySelector("select").disabled=false;document.querySelector("select").value=".";this.dataset.inhibit_jump_once=(event.keyCode>123||(event.keyCode>44&amp;&amp;event.keyCode<112)||event.keyCode==32||(event.keyCode==8&amp;&amp;this.value.length>0))?"true":"false";if(event.keyCode==13||event.keyCode==39)this.oninput();\' oninput=\'if(this.dataset.inhibit_jump_once=="true"){this.dataset.inhibit_jump_once="false";return;}this.value=this.value.split(" (")[0];this.onblur();if (document.getElementById("sendbutton").disabled==false){setTimeout("document.querySelector(&apos;textarea&apos;).focus();"), 1}\' onblur=\'usermatch=document.getElementById("useroption_" + this.value.toLowerCase().trim().replace(/ /g, "_"));document.getElementById("sendbutton").disabled=(usermatch==null);if (usermatch)document.getElementById("newmsgform").action="/messages/user/"+usermatch.dataset.name;\' type=search list=users autofocus><datalist id=users>']
+         for option in db.people.find().sort('name'):
+             their_groups = db.groups.find({'_id': {'$in': option['groups']}, 'private': {'$ne': True}}).sort('_id', -1)
+             groupname = ' (' + their_groups[0]['name'] + ')' if their_groups.count() > 0 else ''
+-            output += ['<option id="useroption_' + esc(option['name'].lower().replace(' ', '_')) + '" data-id="' + str(option['_id']) + '">' + esc(option['name'] + esc(groupname))]
+-        output += ['</datalist><form method=post id=newmsgform><textarea required autofocus style="width:100%;height:10em;" name=msg></textarea><button id=sendbutton disabled>Send</button></form>']
++            output += ['<option id="useroption_' + esc(option['name'].lower().replace(' ', '_')) + '" data-name="' + esc(option['name']) + '">' + esc(option['name'] + esc(groupname))]
++        output += ['</datalist> @ <select disabled onchange=\'document.getElementById("sendbutton").disabled=true;if(this.value!=".")keyExchangeFuckery(this.value);\'><option value="." selected>' + env['HTTP_HOST'] + '</option>'] + [('<option>' + esc(ts) + '</option>') if ts != env['HTTP_HOST'] else '' for ts in _TRUSTED_SERVERS] + ['</select><form method=post id=newmsgform><textarea required autofocus style="width:100%;height:10em;" name=msg></textarea><button id=sendbutton disabled>Send</button></form>']
++        output+=['<style>@media all and (max-width: 640px) {select{max-width:9em}}</style><script>function keyExchangeFuckery(s){document.getElementById("sendbutton").disabled=false;document.getElementById("newmsgform").action="/messages/user/"+document.querySelector("input").value+"@"+s; document.body.appendChild(document.createElement("iframe")).src="/_v0insecurekeyexchange/"+s+"/"+document.querySelector("input").value;document.querySelector("iframe").style.border="none"}</script>']
+ 
+     #/messages/user/something
+     elif path[0] == 'messages' and len(path) == 3 and path[1] == 'user':
+-        try:
+-            id = ObjectId(path[2])
+-        except bson.errors.InvalidId:
+-            pass
++        otheruserref = path[2]
++        otheruser = None
++
++        if '@' in otheruserref:
++            try:
++                otheruser = user['remote_contacts'][otheruserref.replace('.', '_')]
++            except KeyError:
++                output = ["der findes vist ikke helt en bruger der hedder det. (indtil videre skal du vaere ganske praecis med store og smaa bogstaver og saadan.)"]#ikke implementeret: foerstegangskommunikation med en given fjern bruger"]
+         else:
++            otheruser = db.people.find_one({'name': otheruserref})
++        
++        if otheruser:
+             if 'msg' in post:
+                 def _OLDMSGFORMATCOMPATencrypt(clear_msg): key = Random.new().read(32);iv = Random.new().read(AES.block_size);aes_cipher = AES.new(key, AES.MODE_CFB, iv);return (iv + key, aes_cipher.encrypt(clear_msg))
+                 key, encrypted_msg = _OLDMSGFORMATCOMPATencrypt(post['msg'].value)#XXX change this to use encrypt()/decrypt() next time we break format compat anyway
+ 
+-                rcpt = db.people.find_one(id)
+-                msgkeys = {str(person['_id']): RSApadding(RSA.importKey(person['publickey'])).encrypt(key) for person in [user, rcpt]}
++                msgkeys = {str(person['_id']): RSApadding(RSA.importKey(person['publickey'])).encrypt(key) for person in [user, otheruser]}
+                 
+-                db.messages.insert_one({'from': user['_id'], 'to': id, 'keys':msgkeys, 'msg': encrypted_msg})
+-                notify_user(env, db, id, env['HTTP_HOST'] + '/messages/user/' + str(user['_id']), post['msg'].value, user['name'])
++                message_id = db.messages.insert_one({'from': user['_id'], 'to': otheruser['_id'], 'keys': msgkeys, 'msg': encrypted_msg}).inserted_id
++                if '@' in otheruserref:
++                    recipient_server = otheruser['name'].split('@')[-1]
++                    idkey = str(message_id) + hex(int.from_bytes(msgkeys[otheruser['_id']], 'big'))[-42:]
++                    db.messages_outgoing.insert_one({'_id': message_id, 'idkey': idkey, 'server': recipient_server})
++                    http_request(recipient_server, '/_v0msgsync_init?s=' + env['HTTP_HOST'] + '&k=' + idkey)
++                else:
++                    notify_user(env, db, otheruser, env['HTTP_HOST'] + '/messages/user/' + urlesc(user['name']), post['msg'].value, user['name'])
+ 
+-            otheruser = dbcacheget(db, 'people', id, ['name'])
+-            if otheruser:
+-                decrypter = RSApadding(RSA.importKey(login['privatekey'], passphrase=prvkey_passphrase))
+-                pagetitle = otheruser['name']
+-                output = comms_with_user(db, otheruser, user, decrypter)
++            decrypter = RSApadding(RSA.importKey(login['privatekey'], passphrase=prvkey_passphrase))
++            pagetitle = otheruser['name']
++            output = comms_with_user(db, otheruser, user, decrypter)
+ 
+     elif path == ['people']:
+         output = ['<hr>'] + ['<a href="/people/' + str(item['_id']) + '">' + esc(item['name']) + '</a><hr>' for item in db.people.find().sort('name')]
+@@ -827,15 +887,21 @@
+                     output += ['Sekundviseren er nu paa <span style="color: #' + hashlib.md5(tidnu.encode()).hexdigest()[:6] + '">', tidnu, '</span>\n', tidnu,'\n']
+ 
+             if referer[-3:-1] == ['messages', 'user']:
+-                otheruser_id = ObjectId(referer[-1])
+-                messages = db.messages.find({'$or': [{'to': otheruser_id, 'from': user['_id']}, {'from': otheruser_id, 'to': user['_id']}],
+-                                             '_id': {'$gt': ObjectId(path[1])}})
++                otheruserref, lastmsgid = path[1].rsplit('|', 1)
++                if '@' in otheruserref:
++                    otheruser = user['remote_contacts'][otheruserref]
++                else:
++                    otheruserref = ObjectId(otheruserref)
++                    otheruser = dbcacheget(db, 'people', otheruserref, ['name'])
++
++                messages = db.messages.find({'$or': [{'to': otheruserref, 'from': user['_id']}, {'from': otheruserref, 'to': user['_id']}],
++                                             '_id': {'$gt': ObjectId(lastmsgid)}})
+                 if messages.count() > 0:
+                     decrypter = RSApadding(RSA.importKey(login['privatekey'], passphrase=prvkey_passphrase))
+-                    names = {user['_id']: user['name'], otheruser_id: dbcacheget(db, 'people', otheruser_id, ['name'])['name']}
++                    names = {party['_id']: party['name'] for party in [user, otheruser]}
+                     for message in messages:
+                         output += showmessage(db, user, decrypter, message, names) + ['<br>']
+-                    output += ['\n', str(message['_id']), '\n']
++                    output += ['\n', str(otheruser['_id']), '|', str(message['_id']), '\n']
+ 
+             elif referer[-2:-1] == ['threads']:
+                 highest_visible_message_id = ObjectId(path[1])
+@@ -1281,7 +1347,7 @@
+                        '<a href="/changepassword">' + esc(_('Change password')) + '</a></p>']
+     else:
+         output += [esc(user['description'])]
+-        output += ['<p><a href="/messages/user/' + str(user['_id']) + '">' + esc(_('Communicate')) + '</a></p>']
++        output += ['<p><a href="/messages/user/' + esc(urlesc(user['name'])) + '">' + esc(_('Communicate')) + '</a></p>']
+ 
+     groups = db.groups.find({'_id': {'$in': user['groups']}, 'private':{'$ne':True}})
+     output += ['<h2>', esc(_('Groups:')), '</h2>']
+@@ -1301,28 +1367,39 @@
+     
+     return output
+ 
++def urlesc(text):
++    return text.replace(' ', '%20')#FIXME more
++def http_request(host, path):
++    import ssl, http.client
++    req = http.client.HTTPSConnection(host, timeout=2, context=ssl.create_default_context())
++    req.request('POST', path)
++    res = req.getresponse()
++    return res.status, res.read()
+ def comms(db, currentuser, decrypter, fucking_webkit=False):
+-    userids = set(db.messages.find({'to': currentuser['_id']}).distinct('from') + db.messages.find({'from': currentuser['_id']}).distinct('to'))
++    unique_other_users = set(db.messages.find({'to': currentuser['_id']}).distinct('from') + db.messages.find({'from': currentuser['_id']}).distinct('to'))
+     parts = [[], []] #the ones with unreads in the first, the ones without in the second
+     datalist = []
+-    for user in userids:
+-        message = db.messages.find({'$or': [{'to': user, 'from': currentuser['_id']}, {'from': user, 'to': currentuser['_id']}]}).sort('_id', -1)
++    for otheruserref in unique_other_users:
++        message = db.messages.find({'$or': [{'from': currentuser['_id'], 'to': otheruserref}, {'to': currentuser['_id'], 'from': otheruserref}, ]}).sort('_id', -1)
+         message = message[0]
+ 
+-        otheruser = dbcacheget(db, 'people', user, ['name'])
++        if type(otheruserref) is str:
++            otheruser = currentuser['remote_contacts'][otheruserref]
++        else:
++            otheruser = dbcacheget(db, 'people', otheruserref, ['name'])
+         names = {otheruser['_id']: otheruser['name'], currentuser['_id']: esc(_('Me'))}
+ 
+         msgcount = unreadcount(db, currentuser, otheruser)
+         part = []
+-        part += ['<a style="text-decoration:none" href="/messages/user/' + str(otheruser['_id']) + '"><b>' + esc(otheruser['name']) + '</b>']
++        part += ['<a style="text-decoration:none" href="/messages/user/' + esc(urlesc(otheruser['name'])) + '"><b>' + esc(otheruser['name']) + '</b>']
+         if msgcount: part += ['<big style="font-size:1.6em; color:green;">' + ('🐢' * msgcount) + '</big>']
+         part += showmessage(db, currentuser, decrypter, message, names, False)
+         part += ['</a><br><br>']
+         parts[0 if msgcount else 1] += [(message['_id'].generation_time, part)]
+-        datalist += ['<option id="useroption_' + esc(otheruser['name'].lower().replace(' ', '_')) + '" data-id="' + str(user) + '">' + esc(otheruser['name'])]
++        datalist += ['<option id="useroption_' + esc(otheruser['name'].lower().replace(' ', '_')) + '">' + esc(otheruser['name'])]
+ 
+-    output = ['<br><div id=usersearch style="display:none"><input type=search list=users autofocus placeholder="' + esc(_('search by name')) + '" onkeydown=\'this.dataset.inhibit_jump_once=(event.keyCode>123||(event.keyCode>44&amp;&amp;event.keyCode<112)||event.keyCode==32||(event.keyCode==8&amp;&amp;this.value.length>0))?"true":"false";if(event.keyCode==13||event.keyCode==39)this.oninput();\' oninput=\'if(this.dataset.inhibit_jump_once=="true"){this.dataset.inhibit_jump_once="false";return;} usermatch=document.getElementById("useroption_" + this.value.toLowerCase().trim().replace(" ", "_")); if(usermatch)window.location.href="/messages/user/"+usermatch.dataset.id;\'><br><br></div><a id=newlink href="/people">' + esc(_('New')) + '</a><br><br><br><script>document.getElementById("usersearch").style.display="block";document.getElementById("newlink").href="/messages/new";</script><datalist id=users>'] + datalist + ['</datalist>']
+-    if fucking_webkit: output = ['<br><select onchange=\'window.location.href="/messages/user/"+document.getElementById("useroption_" + this.value.toLowerCase().trim().replace(" ", "_")).dataset.id;\'><option>'] + datalist + ['</select><br><br><a href="/people">Ny</a><br><br><br>']#webkit no support datalist
++    output = ['<br><div id=usersearch style="display:none"><input type=search list=users autofocus placeholder="' + esc(_('search by name')) + '" onkeydown=\'this.dataset.inhibit_jump_once=(event.keyCode>123||(event.keyCode>44&amp;&amp;event.keyCode<112)||event.keyCode==32||(event.keyCode==8&amp;&amp;this.value.length>0))?"true":"false";if(event.keyCode==13||event.keyCode==39)this.oninput();\' oninput=\'if(this.dataset.inhibit_jump_once=="true"){this.dataset.inhibit_jump_once="false";return;} usermatch=document.getElementById("useroption_" + this.value.toLowerCase().trim().replace(/ /g, "_")); if(usermatch)window.location.href="/messages/user/"+usermatch.value;\'><br><br></div><a id=newlink href="/people">' + esc(_('New')) + '</a><br><br><br><script>document.getElementById("usersearch").style.display="block";document.getElementById("newlink").href="/messages/new";</script><datalist id=users>'] + datalist + ['</datalist>']
++    if fucking_webkit: output = ['<br><select onchange=\'window.location.href="/messages/user/"+this.value;\'><option selected>'] + datalist + ['</select><br><br><a href="/people">Ny</a><br><br><br>']#webkit no support datalist
+ 
+     for someparts in parts:
+         for part in (sorted(someparts, key=lambda x: x[0], reverse=True)):
+@@ -1333,14 +1410,14 @@
+ def comms_with_user(db, otheruser, currentuser, decrypter):
+     messages = db.messages.find({'$or': [{'to': otheruser['_id'], 'from': currentuser['_id']}, {'from': otheruser['_id'], 'to': currentuser['_id']}]}).sort('_id')
+ 
+-    names = {user['_id']: user['name'] for user in [otheruser, currentuser]}
++    names = {party['_id']: party['name'] for party in [otheruser, currentuser]}
+     output = ['<h1>', esc(otheruser['name']), '</h1>']
+     message = None
+     for message in messages:
+         output += showmessage(db, currentuser, decrypter, message, names, False) + ['<br>']
+ 
+     if message:
+-        output += ['<script id=news_insert_marker>fetch_news.position_info="' + str(message['_id']) + '";</script>']
++        output += ['<script id=news_insert_marker>fetch_news.position_info="' + str(otheruser['_id']) + '|' + str(message['_id']) + '";</script>']
+     output += ['<form method=post><textarea oninput="this.value=this.value.replace(/\\n/g, \'\');" autofocus style="width:100%;height:10em;" name=msg></textarea><button>Send</button></form>']
+     return output
+ 
+@@ -1705,8 +1782,7 @@
+ 
+     send_notifications(env, db, notifications)
+ 
+-def notify_user(env, db, id, url, text, originating_user_name):
+-    target = db.people.find_one(id)
++def notify_user(env, db, target, url, text, originating_user_name):
+     notifications = []
+ 
+     if 'evilempireid' in target:
